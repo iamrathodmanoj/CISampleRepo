@@ -10,7 +10,7 @@ namespace CISampleApplication.Controllers
     public class SampleDataController : Controller
     {
         private static string[] Summaries = new[]
-        
+        {
             "Freezing", "Bracing", "Chilly", "Cool", "Mild", "Warm", "Balmy", "Hot", "Sweltering", "Scorching"
         };
 
