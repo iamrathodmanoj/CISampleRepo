@@ -17,6 +17,7 @@ namespace CISampleApplication.Controllers
         [HttpGet("[action]")]
         public IEnumerable<WeatherForecast> WeatherForecasts()
         {
+        /// snsadihsadsadh
             var rng = new Random();
             return Enumerable.Range(1, 5).Select(index => new WeatherForecast
             {
