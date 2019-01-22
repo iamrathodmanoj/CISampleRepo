@@ -6,6 +6,7 @@ queue:
   - msbuild
   - visualstudio
 
+#Your build pipeline references an undefined variable named ‘Parameters.includeNuGetOrg’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 #Your build pipeline references an undefined variable named ‘Parameters.solution’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 #Your build pipeline references an undefined variable named ‘Parameters.solution’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 #Your build pipeline references the ‘BuildPlatform’ variable, which you’ve selected to be settable at queue time. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab, and then select the option to make it settable at queue time. See https://go.microsoft.com/fwlink/?linkid=865971
@@ -16,10 +17,23 @@ queue:
 #Your build pipeline references an undefined variable named ‘Parameters.ArtifactName’. Create or edit the build pipeline for this YAML file, define the variable on the Variables tab. See https://go.microsoft.com/fwlink/?linkid=865972
 steps:
 - task: NuGetToolInstaller@0
+  displayName: 'Use NuGet 4.3.0'
+
+
+- task: NuGetCommand@2
+  displayName: 'NuGet restore'
+  inputs:
+    vstsFeed: CISamplePackage
+
+    includeNuGetOrg: '$(Parameters.includeNuGetOrg)'
+
+
+- task: NuGetToolInstaller@0
   displayName: 'Use NuGet 4.4.1'
   inputs:
     versionSpec: 4.4.1
 
+  enabled: false
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
@@ -28,6 +42,7 @@ steps:
 
     vstsFeed: CISamplePackage
 
+  enabled: false
 
 - task: VSBuild@1
   displayName: 'Build solution'
