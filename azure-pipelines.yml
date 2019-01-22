@@ -20,6 +20,7 @@ steps:
   inputs:
     versionSpec: 4.4.1
 
+  enabled: false
 
 - task: NuGetCommand@2
   displayName: 'NuGet restore'
@@ -28,6 +29,7 @@ steps:
 
     vstsFeed: CISamplePackage
 
+  enabled: false
 
 - task: VSBuild@1
   displayName: 'Build solution'
