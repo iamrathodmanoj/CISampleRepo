@@ -1,0 +1,3 @@
+FROM RegistryImageName
+WORKDIR /inetpub/wwwroot
+COPY ./ /inetpub/wwwroot
